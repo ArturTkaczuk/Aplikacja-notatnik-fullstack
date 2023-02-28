@@ -1,7 +1,8 @@
 const express = require("express");
 const app = express();
-const notesRouter = require("./routes/notes");
+const notesRouter = require("./routes/notesRouter");
 const bodyParser = require("body-parser");
+require("dotenv").config();
 
 // parsers
 app.use(bodyParser.json());
@@ -15,6 +16,6 @@ app.get("/", (req, res) => {
 });
 
 // server start
-app.listen(3000, () => {
-  console.log("Server start");
+app.listen(process.env.PORT, () => {
+  console.log("Server running on port " + process.env.PORT);
 });
