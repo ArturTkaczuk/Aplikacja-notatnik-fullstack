@@ -29,20 +29,16 @@ class noteActions {
     }
   }
 
-  updateNote(req, res) {
+  async updateNote(req, res) {
     const title = req.body.title;
     const description = req.body.description;
     const id = req.params.id;
 
-    const objIndex = notes.findIndex((obj) => obj.id == id);
-
-    if (objIndex == -1) {
-      res.status(422).json({ error: "Wrong note id" });
-    } else {
-      notes[objIndex].title = title;
-      notes[objIndex].description = description;
-
-      res.status(200).json(notes[objIndex]);
+    try {
+      await Note.findOneAndUpdate({ _id: id }, { title, description });
+      res.sendStatus(200);
+    } catch (error) {
+      res.status(422).json({ error: error.message });
     }
   }
 
