@@ -16,12 +16,17 @@ class noteActions {
       res.status(200).json({ title, description });
     } catch (error) {
       console.log("Error occurred: " + error);
-      res.status(422).json({ error });
+      res.status(422).json({ error: error.message });
     }
   }
 
-  readNotes(req, res) {
-    res.status(200).json(notes);
+  async readNotes(req, res) {
+    try {
+      const allNotes = await Note.find({});
+      res.status(200).json(allNotes);
+    } catch (error) {
+      res.status(400).json({ error: error.message });
+    }
   }
 
   updateNote(req, res) {
