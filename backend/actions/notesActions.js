@@ -34,7 +34,10 @@ class noteActions {
     const id = req.params.id;
 
     try {
-      await Note.findOneAndUpdate({ _id: id }, { title, description });
+      await Note.findOneAndUpdate(
+        { _id: id },
+        { title, description, updatedAt: Date.now() }
+      );
       res.sendStatus(200);
     } catch (error) {
       res.status(422).json({ error: error.message });
