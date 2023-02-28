@@ -13,9 +13,8 @@ class noteActions {
     try {
       await newNote.save();
       console.log("Successfully added new note");
-      res.status(200).json({ title, description });
+      res.sendStatus(200);
     } catch (error) {
-      console.log("Error occurred: " + error);
       res.status(422).json({ error: error.message });
     }
   }
@@ -42,17 +41,14 @@ class noteActions {
     }
   }
 
-  deleteNote(req, res) {
+  async deleteNote(req, res) {
     const id = req.params.id;
 
-    const objIndex = notes.findIndex((obj) => obj.id == id);
-
-    if (objIndex == -1) {
-      res.status(422).json({ error: "Wrong note id" });
-    } else {
-      notes.splice(objIndex, 1);
-
-      res.status(200).send("Note deleted");
+    try {
+      await Note.deleteOne({ _id: id });
+      res.sendStatus(200);
+    } catch (error) {
+      res.status(422).json({ error: error.message });
     }
   }
 }
