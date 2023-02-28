@@ -1,12 +1,12 @@
 const express = require("express");
 const app = express();
-const notesRouter = require("./routes/notesRouter");
+const notesRouter = require("./app/routes/notesRouter");
 const bodyParser = require("body-parser");
 require("dotenv").config();
-const Note = require("./database/models/noteModel");
+const Note = require("./app/database/models/noteModel");
 
 // database
-require("./database/mongoose");
+require("./app/database/mongoose");
 
 // parsers
 app.use(bodyParser.json());
