@@ -1,25 +1,23 @@
-const notes = [
-  {
-    id: 12334,
-    title: "Wash car",
-    description: "And on the way home buy groceries",
-  },
-  {
-    id: 43432,
-    title: "Visit aunt",
-    description: "And dont forget to buy her chocolate",
-  },
-];
+const Note = require("../database/models/noteModel");
 
 class noteActions {
-  createNote(req, res) {
+  async createNote(req, res) {
     const title = req.body.title;
     const description = req.body.description;
-    const id = Math.floor(Math.random() * (10000 - 1) + 1);
 
-    notes.push({ id, title, description });
+    const newNote = new Note({
+      title,
+      description,
+    });
 
-    res.status(200).json({ id, title, description });
+    try {
+      await newNote.save();
+      console.log("Successfully added new note");
+    } catch (err) {
+      console.log("Error occurred: " + err);
+    }
+
+    res.status(200).json({ title, description });
   }
 
   readNotes(req, res) {
