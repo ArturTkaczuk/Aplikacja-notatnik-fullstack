@@ -13,11 +13,11 @@ class noteActions {
     try {
       await newNote.save();
       console.log("Successfully added new note");
-    } catch (err) {
-      console.log("Error occurred: " + err);
+      res.status(200).json({ title, description });
+    } catch (error) {
+      console.log("Error occurred: " + error);
+      res.status(422).json({ error });
     }
-
-    res.status(200).json({ title, description });
   }
 
   readNotes(req, res) {
