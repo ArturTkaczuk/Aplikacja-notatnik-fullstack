@@ -86,7 +86,7 @@ describe("POST /notes", () => {
   });
 });
 
-describe("PUT /notes", () => {
+describe("PUT /notes/:id", () => {
   describe("Tests with correct data sent", () => {
     it("Updates test note one", function (done) {
       request(app)
@@ -120,7 +120,7 @@ describe("PUT /notes", () => {
   });
 
   describe("Tests with invalid data sent", () => {
-    it("Updates note that doesn't exist", function (done) {
+    it("Doesn't update note with invalid id", function (done) {
       request(app)
         .put(`/api/v1/notes/12345}`)
         .send({
@@ -134,6 +134,46 @@ describe("PUT /notes", () => {
           if (err) return done(err);
           return done();
         });
+    });
+  });
+});
+
+describe("DELETE /notes/:id", () => {
+  describe("Tests with correct data sent", () => {
+    it("Deletes test note one", function (done) {
+      request(app)
+        .delete(`/api/v1/notes/${createdNotesIds[0]}`)
+        .set("Accept", "application/json")
+        .expect(200)
+        .end(function (err, res) {
+          if (err) return done(err);
+          return done();
+        });
+    });
+
+    it("Deletes test note two", function (done) {
+      request(app)
+        .delete(`/api/v1/notes/${createdNotesIds[1]}`)
+        .set("Accept", "application/json")
+        .expect(200)
+        .end(function (err, res) {
+          if (err) return done(err);
+          return done();
+        });
+    });
+
+    describe("Tests with invalid data sent", () => {
+      it("Doesn't delete test note with wrong id", function (done) {
+        request(app)
+          .delete(`/api/v1/notes/1231231434`)
+          .set("Accept", "application/json")
+          .expect("Content-Type", /json/)
+          .expect(422)
+          .end(function (err, res) {
+            if (err) return done(err);
+            return done();
+          });
+      });
     });
   });
 });
