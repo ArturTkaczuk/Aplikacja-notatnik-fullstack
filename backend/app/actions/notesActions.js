@@ -12,8 +12,7 @@ class noteActions {
 
     try {
       await newNote.save();
-      console.log("Successfully added new note");
-      res.sendStatus(200);
+      res.status(200).json(newNote);
     } catch (error) {
       res.status(422).json({ error: error.message });
     }
