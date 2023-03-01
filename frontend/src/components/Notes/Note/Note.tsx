@@ -1,17 +1,13 @@
 import { Card, CardContent, Typography, Box, Button } from "@mui/material";
+import { NoteType } from "../../../types";
 
 type NoteProps = {
-  prop: string;
+  note: NoteType;
 };
 
-const body = `Example line:
-    Example1
+export const Note = ({ note }: NoteProps): JSX.Element => {
+  const date = new Date(note.updatedAt).toISOString().split("T")[0];
 
-  Example line2:
-    Example2
-  `;
-
-export const Note = (): JSX.Element => {
   return (
     <Card sx={{ minWidth: 275, backgroundColor: "lightyellow" }}>
       <CardContent
@@ -34,16 +30,16 @@ export const Note = (): JSX.Element => {
           component="div"
           gutterBottom
         >
-          be new bykk
+          {note.title}
         </Typography>
         <Typography sx={{ fontSize: 14 }} color="text.secondary">
           Description
         </Typography>
         <Typography variant="body1" style={{ whiteSpace: "pre-line" }}>
-          {body}
+          {note.description}
         </Typography>
         <Typography sx={{ fontStyle: "italic" }}>
-          Last edited: 01/03/23
+          Last edited: {date}
         </Typography>
       </CardContent>
     </Card>

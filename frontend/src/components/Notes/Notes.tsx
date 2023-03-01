@@ -1,15 +1,17 @@
 import { Box } from "@mui/material";
+import { NoteType } from "../../types";
 import { Note } from "./Note/Note";
 
 type NotesProps = {
-  prop: string;
+  notes: NoteType[];
 };
 
-export const Notes = (): JSX.Element => {
+export const Notes = ({ notes }: NotesProps): JSX.Element => {
   return (
     <Box sx={{ display: "flex", flexDirection: "column", gap: "10px" }}>
-      <Note />
-      <Note />
+      {notes.map((note) => {
+        return <Note note={note} />;
+      })}
     </Box>
   );
 };
