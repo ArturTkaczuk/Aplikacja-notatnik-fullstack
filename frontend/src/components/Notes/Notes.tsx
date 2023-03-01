@@ -10,7 +10,7 @@ export const Notes = ({ notes }: NotesProps): JSX.Element => {
   return (
     <Box sx={{ display: "flex", flexDirection: "column", gap: "10px" }}>
       {notes.map((note) => {
-        return <Note note={note} />;
+        return <Note key={note._id} note={note} />;
       })}
     </Box>
   );
