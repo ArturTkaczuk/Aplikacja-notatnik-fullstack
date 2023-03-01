@@ -3,9 +3,10 @@ import { NoteType } from "../../../types";
 
 type NoteProps = {
   note: NoteType;
+  deleteNote: (_id: string) => void;
 };
 
-export const Note = ({ note }: NoteProps): JSX.Element => {
+export const Note = ({ note, deleteNote }: NoteProps): JSX.Element => {
   const date = new Date(note.updatedAt).toISOString().split("T")[0];
 
   return (
@@ -20,7 +21,12 @@ export const Note = ({ note }: NoteProps): JSX.Element => {
           <Button sx={{ ml: "auto" }} size="small" variant="contained">
             Edit
           </Button>
-          <Button size="small" variant="contained" color="error">
+          <Button
+            onClick={() => deleteNote(note._id)}
+            size="small"
+            variant="contained"
+            color="error"
+          >
             Delete
           </Button>
         </Box>
