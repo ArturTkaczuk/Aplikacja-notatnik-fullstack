@@ -7,7 +7,11 @@ type NoteProps = {
   handleOpenModal: (_id?: string) => void;
 };
 
-export const Note = ({ note, deleteNote }: NoteProps): JSX.Element => {
+export const Note = ({
+  note,
+  deleteNote,
+  handleOpenModal,
+}: NoteProps): JSX.Element => {
   const date = new Date(note.updatedAt).toISOString().split("T")[0];
 
   return (
@@ -19,7 +23,12 @@ export const Note = ({ note, deleteNote }: NoteProps): JSX.Element => {
           <Typography sx={{ fontSize: 14 }} color="text.secondary">
             Title
           </Typography>
-          <Button sx={{ ml: "auto" }} size="small" variant="contained">
+          <Button
+            onClick={() => handleOpenModal(note._id)}
+            sx={{ ml: "auto" }}
+            size="small"
+            variant="contained"
+          >
             Edit
           </Button>
           <Button

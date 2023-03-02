@@ -64,7 +64,15 @@ function App() {
     // if id is passed to openModal function, then modal is set to "Edit mode"
     // else modal is opened in "Add new mode"
     set_idForModal(_id);
+
     if (_id) {
+      // set modalTitle and modalDescription to clicked note's data
+      const { title, description } = notes.filter((note) => {
+        if (note._id === _id) return note;
+      })[0];
+      setModalTitle(title);
+      setModalDescription(description);
+
       setModalMode("edit");
     } else {
       setModalMode("add new");
@@ -82,6 +90,9 @@ function App() {
   };
 
   const handleSave = async () => {
+    // close modal
+    handleCloseModal();
+
     if (modalMode === "add new") {
       try {
         // backend post request
@@ -92,15 +103,33 @@ function App() {
         console.log("Note added successfully!");
         // local state manipulation
         setNotes([...notes, res.data as NoteType]);
-        // close modal
-        handleCloseModal();
       } catch (error) {
         console.error(error);
       }
     } else if (modalMode === "edit") {
-      // backend
-      // local state manipulation
-      console.log({ _id: _idForModal });
+      try {
+        // backend put request
+        const res = await axios.put(`/notes/${_idForModal}`, {
+          title: modalTitle,
+          description: modalDescription,
+        });
+        console.log(res.data);
+        // local state manipulation
+        const newNotesState = notes.map((note) => {
+          if (note._id === _idForModal) {
+            return {
+              ...note,
+              title: modalTitle,
+              description: modalDescription,
+            };
+          } else {
+            return note;
+          }
+        });
+        setNotes(newNotesState);
+      } catch (error) {
+        console.error(error);
+      }
     }
   };
 
@@ -115,7 +144,6 @@ function App() {
       />
 
       {/* Add/edit note modal */}
-      <Button onClick={() => handleOpenModal()}>Open modal</Button>
       <Modal
         open={open}
         onClose={handleCloseModal}
