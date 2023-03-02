@@ -4,6 +4,7 @@ import { NoteType } from "../../../types";
 type NoteProps = {
   note: NoteType;
   deleteNote: (_id: string) => void;
+  handleOpenModal: (_id?: string) => void;
 };
 
 export const Note = ({ note, deleteNote }: NoteProps): JSX.Element => {

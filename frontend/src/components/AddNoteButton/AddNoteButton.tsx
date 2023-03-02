@@ -1,8 +1,15 @@
 import { Button } from "@mui/material";
 
-export const AddNoteButton = (): JSX.Element => {
+type AddNoteButtonProps = {
+  handleOpenModal: (_id?: string) => void;
+};
+
+export const AddNoteButton = ({
+  handleOpenModal,
+}: AddNoteButtonProps): JSX.Element => {
   return (
     <Button
+      onClick={() => handleOpenModal()}
       variant="contained"
       color="success"
       size="large"
