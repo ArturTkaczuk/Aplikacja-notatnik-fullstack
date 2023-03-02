@@ -64,6 +64,7 @@ Technologies used during development process:
 - Create-react-app TypeScript
 - Material UI
 - Axios
+- HTML
 
 ### Backend:
 - Express framework
