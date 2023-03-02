@@ -23,18 +23,18 @@ Simple MERN stack CRUD app using MongoDB database. Check it [Live here](https://
 
 **a) Download project via git**
 
-Run commands in terminal:
+Run this command in terminal to download repository:
+
+`git clone https://github.com/ArturTkaczuk/Aplikacja-notatnik-fullstack.git`
 
 ### frontend install dependencies
 ```sh
-git clone https://github.com/ArturTkaczuk/Aplikacja-notatnik-fullstack.git
 cd Aplikacja-notatnik-fullstack/frontend
 npm install
 ```
 
 ### backend install dependencies
 ```sh
-git clone https://github.com/ArturTkaczuk/Aplikacja-notatnik-fullstack.git
 cd Aplikacja-notatnik-fullstack/backend
 npm install
 ```
