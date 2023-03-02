@@ -70,7 +70,11 @@ function App() {
     if (_id) {
       // set modalTitle and modalDescription to clicked note's data
       const { title, description } = notes.filter((note) => {
-        if (note._id === _id) return note;
+        if (note._id === _id) {
+          return 1;
+        } else {
+          return 0;
+        }
       })[0];
       setModalTitle(title);
       setModalDescription(description);
@@ -112,7 +116,7 @@ function App() {
     } else if (modalMode === "edit") {
       try {
         // backend put request
-        const res = await axios.put(`/notes/${_idForModal}`, {
+        await axios.put(`/notes/${_idForModal}`, {
           title: modalTitle,
           description: modalDescription,
         });
