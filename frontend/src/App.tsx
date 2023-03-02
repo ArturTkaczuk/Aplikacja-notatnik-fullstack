@@ -29,6 +29,7 @@ const modalStyle = {
 function App() {
   const [notes, setNotes] = useState<NoteType[]>([]);
 
+  // fetch notes from database on app load
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -60,6 +61,7 @@ function App() {
   const [modalMode, setModalMode] = useState<"edit" | "add new">("add new");
   const [modalTitle, setModalTitle] = useState("");
   const [modalDescription, setModalDescription] = useState("");
+
   const handleOpenModal = (_id?: string) => {
     // if id is passed to openModal function, then modal is set to "Edit mode"
     // else modal is opened in "Add new mode"
@@ -79,6 +81,7 @@ function App() {
     }
     setOpen(true);
   };
+
   const resetModalData = () => {
     setModalTitle("");
     setModalDescription("");
@@ -113,7 +116,7 @@ function App() {
           title: modalTitle,
           description: modalDescription,
         });
-        console.log(res.data);
+        console.log("Note edited successfully!");
         // local state manipulation
         const newNotesState = notes.map((note) => {
           if (note._id === _idForModal) {
