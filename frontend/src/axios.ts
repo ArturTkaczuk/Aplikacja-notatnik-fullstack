@@ -1,7 +1,8 @@
 import axios from "axios";
+import { REMOTE_API_URL } from "./config";
 
 const instance = axios.create({
-  baseURL: "http://localhost:3000/api/v1",
+  baseURL: REMOTE_API_URL,
 });
 
 export default instance;
