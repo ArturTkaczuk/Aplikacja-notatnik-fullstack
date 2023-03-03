@@ -93,6 +93,6 @@ Please [open an issue](https://github.com/ArturTkaczuk/Aplikacja-notatnik-fullst
 Please contribute using [Github Flow](https://guides.github.com/introduction/flow/). Create a branch, add commits, and [open a pull request](https://github.com/ArturTkaczuk/Aplikacja-notatnik-fullstack/compare).
 
 ## License
->You can check out the full license [here](https://github.com/ArturTkaczuk/Aplikacja-notatnik-fullstack).
+>You can check out the full license [here](https://github.com/ArturTkaczuk/Aplikacja-notatnik-fullstack/blob/master/LICENSE).
 
 This project is licensed under the terms of the ***MIT license***.
