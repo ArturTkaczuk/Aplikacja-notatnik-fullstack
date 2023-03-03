@@ -1,4 +1,4 @@
-const Note = require("../database/models/noteModel");
+import Note from "../database/models/noteModel.js";
 
 class noteActions {
   async createNote(req, res) {
@@ -55,4 +55,4 @@ class noteActions {
   }
 }
 
-module.exports = new noteActions();
+export default new noteActions();

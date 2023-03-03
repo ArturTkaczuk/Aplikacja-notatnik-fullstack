@@ -1,6 +1,7 @@
-const express = require("express");
+import express from "express";
+import noteActions from "../actions/notesActions.js";
+
 const router = express.Router();
-const noteActions = require("../actions/notesActions");
 
 // Create note
 router.post("/notes", noteActions.createNote);
@@ -14,4 +15,4 @@ router.put("/notes/:id", noteActions.updateNote);
 // Delete note
 router.delete("/notes/:id", noteActions.deleteNote);
 
-module.exports = router;
+export default router;

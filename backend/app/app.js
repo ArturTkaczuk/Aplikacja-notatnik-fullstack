@@ -1,12 +1,16 @@
-const express = require("express");
+import express from "express";
+import notesRouter from "./routes/notesRouter.js";
+import bodyParser from "body-parser";
+import cors from "cors";
+import dotenv from "dotenv";
+import connectToDatabase from "./database/mongoose.js";
+
+dotenv.config();
+
 const app = express();
-const notesRouter = require("./routes/notesRouter");
-const bodyParser = require("body-parser");
-const cors = require("cors");
-require("dotenv").config();
 
 // database
-require("./database/mongoose");
+connectToDatabase();
 
 // middleware
 app.use(cors());
@@ -15,4 +19,4 @@ app.use(bodyParser.json());
 // routes
 app.use("/api/v1/", notesRouter);
 
-module.exports = app;
+export default app;

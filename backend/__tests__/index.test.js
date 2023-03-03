@@ -1,7 +1,7 @@
 // To start tests in /backend run "npm jest"
 
-const app = require("../app/app");
-const request = require("supertest");
+import app from "../app/app.js";
+import request from "supertest";
 
 let createdNotesIds = [];
 
