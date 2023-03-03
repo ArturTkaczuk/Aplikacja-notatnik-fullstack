@@ -1,6 +1,6 @@
 # Aplikacja-notatnik-fullstack
 
-Simple MERN stack CRUD app using MongoDB database. Check it [Live here](https://aplikacja-notatnik-fullstack.netlify.app/)
+MERN stack CRUD app using MongoDB database with Nodejs Express REST API. Check it [Live here](https://aplikacja-notatnik-fullstack.netlify.app/)
 
 ## Table of Contents
 
@@ -80,7 +80,7 @@ Technologies used during development process:
 
 - CRUD notes operations
 - Frontend in CRA-TypeScript hosted on [netlify](https://aplikacja-notatnik-fullstack.netlify.app/)
-- NodeJS Backend in Express hosted on [render.com](https://render.com/)
+- NodeJS REST API in Express hosted on [render.com](https://render.com/)
 - NoSQL database integration hosted on MongoDB Atlas
 - 11 working Backend API tests
 
